@@ -20,5 +20,8 @@ type GameData = {
   phase: 'SET' | 'SELECT';
   firstPlayer: Player;
   secondPlayer: Player;
-  // selectBoxes: [Box, Box];
+  settingBoxes: {
+    left: Box;
+    right: Box;
+  };
 };

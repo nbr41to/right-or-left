@@ -4,11 +4,11 @@ type Props = {
   order: Order;
 };
 
-export const CurrentPlayerBar = ({ order }: Props) => {
+export const PlayerBar = ({ order }: Props) => {
   return (
     <div
       className={clsx(
-        'text-white font-bold text-center',
+        'text-white font-bold text-center py-px',
         order === 'FIRST' && 'bg-red-600',
         order === 'SECOND' && 'bg-blue-600'
       )}

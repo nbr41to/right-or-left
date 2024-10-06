@@ -1,68 +1,28 @@
-'use client';
-
-import { CurrentPlayerBar } from '@/components/CurrentPlayerBar';
-import { ScoreBoard } from '@/components/ScoreBoard';
-import { SetBoxes } from '@/components/SetBoxes';
-import { Divider } from '@mantine/core';
-import { use, useMemo, useState } from 'react';
+import { Button } from '@mantine/core';
+import { Chip } from '@/components/Chip';
+import Link from 'next/link';
 
 export default function Home() {
-  const [gameData, setGameData] = useState<GameData>({
-    turn: 'FIRST',
-    phase: 'SET',
-    restChips: {
-      red: 5,
-      yellow: 5,
-      blue: 5,
-      black: 5,
-    },
-    firstPlayer: {
-      order: 'FIRST',
-      chips: { red: 0, yellow: 0, blue: 0, black: 0 },
-    },
-    secondPlayer: {
-      order: 'SECOND',
-      chips: { red: 0, yellow: 0, blue: 0, black: 0 },
-    },
-  });
-
-  const currentPlayer: Player = useMemo(() => {
-    return gameData.turn === 'FIRST'
-      ? gameData.firstPlayer
-      : gameData.secondPlayer;
-  }, [gameData]);
-
-  const finished = useMemo(
-    () =>
-      Object.values(gameData.restChips).every((chip) => chip === 0) &&
-      gameData.phase === 'SET',
-    [gameData]
-  );
-
   return (
-    <div className="px-2">
-      {finished ? (
-        <>
-          <CurrentPlayerBar order={'FIRST'} />
-          <ScoreBoard player={gameData.firstPlayer} />
-          <CurrentPlayerBar order={'SECOND'} />
-          <ScoreBoard player={gameData.secondPlayer} />
-        </>
-      ) : (
-        <>
-          <CurrentPlayerBar order={gameData.turn} />
-          <ScoreBoard player={currentPlayer} />
-          <SetBoxes
-            restChips={gameData.restChips}
-            gameData={gameData}
-            setGameData={setGameData}
-          />
-        </>
-      )}
+    <div className="h-screen flex flex-col justify-center gap-4">
+      <div className="grid grid-cols-4 gap-3 w-fit mx-auto">
+        <Chip color="red" size={32} />
+        <Chip color="yellow" size={32} />
+        <Chip color="blue" size={32} />
+        <Chip color="black" size={32} />
+      </div>
 
-      <Divider />
+      <h1 className="flex flex-col items-center font-bold mx-auto w-fit">
+        <span className="text-4xl text-red-500">Right</span>
+        <span className="text-2xl">or</span>
+        <span className="text-4xl text-blue-600">Left</span>
+      </h1>
 
-      <pre className="mt-80">{JSON.stringify(gameData, null, 2)}</pre>
+      <div className="mx-auto w-fit">
+        <Button size="lg" radius={9999} component={Link} href="playing">
+          Game Start
+        </Button>
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ type Props = {
 export const Chip = ({ color, size = 32 }: Props) => {
   const colorClass = {
     red: 'fill-red-600',
-    yellow: 'fill-yellow-500',
+    yellow: 'fill-yellow-400',
     blue: 'fill-blue-600',
     black: 'fill-gray-800',
   }[color];

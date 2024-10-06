@@ -6,7 +6,7 @@ type Props = {
 
 export const ChipCounter = ({ chips }: Props) => {
   return (
-    <div className="grid grid-cols-4 gap-3 w-fit mx-auto">
+    <div className="grid grid-cols-4 gap-3 w-fit mx-auto py-1">
       <div className="flex items-center gap-2">
         <Chip color="red" size={32} />
         <span className="font-bold">{chips.red}</span>
